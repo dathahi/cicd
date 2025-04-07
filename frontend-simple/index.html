@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Công việc</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Danh sách Công việc</h1>
+        
+        <div class="add-task">
+            <input type="text" id="new-task" placeholder="Nhập công việc mới..." autocomplete="off">
+            <button id="add-btn">Thêm</button>
+        </div>
+        
+        <div id="status-message" class="message"></div>
+        
+        <div class="task-list" id="task-list">
+            <!-- Tasks will be added here dynamically -->
+            <div id="loading">Đang tải...</div>
+        </div>
+    </div>
+    
+    <!-- Task Details Modal -->
+    <div id="task-details" class="modal">
+        <!-- Task details will be added here dynamically -->
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
