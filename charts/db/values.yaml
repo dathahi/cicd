@@ -1,0 +1,42 @@
+architecture: standalone
+
+auth:
+  rootPassword: "password"
+  username: "todo_user"
+  password: "password"
+  database: "todo_list"
+
+primary:
+  service:
+    type: ClusterIP
+    port: 3307
+  containerPorts:
+    mysql: 3306
+  persistence:
+    enabled: true
+    storageClass: "standard"
+    accessModes:
+      - ReadWriteOnce
+    size: 8Gi
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+    requests:
+      cpu: "200m"
+      memory: "256Mi"
+  readinessProbe:
+    enabled: false
+  livenessProbe:
+    enabled: false
+  startupProbe:
+    enabled: false
+
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
