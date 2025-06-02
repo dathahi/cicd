@@ -1,0 +1,11 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: hello-world
+  image: alpine
+  commands:
+  - echo "hello-world"
+  - pwd
