@@ -16,7 +16,7 @@ steps:
       repo: dathahi/du_an-backend
       tags:
         - latest
-        - $(git rev-parse --short HEAD)
+        - ${DRONE_COMMIT_SHA:0:7}
       context: ./golang
       dockerfile: ./golang/Dockerfile 
     when:
@@ -33,7 +33,7 @@ steps:
       repo: dathahi/du_an-frontend
       tags:
         - latest
-        - $(git rev-parse --short HEAD)
+        - ${DRONE_COMMIT_SHA:0:7}
       context: ./frontend-simple 
       dockerfile: ./frontend-simple/Dockerfile 
     when:
