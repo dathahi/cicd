@@ -1,11 +1,37 @@
----
 kind: pipeline
 type: docker
 name: default
 
 steps:
-- name: hello-world
-  image: alpine
-  commands:
-  - echo "hello-world"
-  - pwd
+  - name: build_and_push_backend 
+    image: plugins/docker 
+    settings:
+      username:
+        from_secret: username_docker
+      password:
+        from_secret: password_docker
+      repo: dathahi/du_an-backend
+      tags:
+        - latest
+        - $(git rev-parse --short HEAD)
+      dockerfile: ./golang/Dockerfile 
+    when:
+      branch: main
+      event: push
+
+  - name: build_and_push_frontend
+    image: plugins/docker 
+    settings:
+      username:
+        from_secret: username_docker
+      password:
+        from_secret: password_docker
+      repo: dathahi/du_an-frontend
+      tags:
+        - latest
+        - $(git rev-parse --short HEAD)
+      context: ./frontend-simple 
+      dockerfile: ./frontend-simple/Dockerfile 
+    when:
+      branch: main
+      event: push
