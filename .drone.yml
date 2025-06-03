@@ -2,6 +2,9 @@ kind: pipeline
 type: docker
 name: default
 
+workspace: 
+  path: /drone/src
+
 steps:
   - name: build_and_push_backend 
     image: plugins/docker 
@@ -14,6 +17,7 @@ steps:
       tags:
         - latest
         - $(git rev-parse --short HEAD)
+      context: ./golang
       dockerfile: ./golang/Dockerfile 
     when:
       branch: main
